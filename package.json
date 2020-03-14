@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service build --mode development --watch",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
@@ -14,6 +14,7 @@
     "vue-property-decorator": "^8.3.0"
   },
   "devDependencies": {
+    "@types/firefox-webext-browser": "^67.0.2",
     "@typescript-eslint/eslint-plugin": "^2.18.0",
     "@typescript-eslint/parser": "^2.18.0",
     "@vue/cli-plugin-babel": "~4.2.0",
@@ -29,11 +30,14 @@
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.2",
     "typescript": "~3.7.5",
+    "vue-cli-plugin-browser-extension": "~0.24.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
     "root": true,
     "env": {
+      "browser": true,
+      "webextensions": true,
       "node": true
     },
     "extends": [
@@ -46,7 +50,13 @@
     "parserOptions": {
       "ecmaVersion": 2020
     },
-    "rules": {}
+    "rules": {
+      "no-console": "warn"
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false
   },
   "browserslist": [
     "> 1%",
