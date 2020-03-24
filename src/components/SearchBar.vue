@@ -1,5 +1,5 @@
 <template>
-  <div class="searchbar w-3/4">
+  <div class="searchbar">
     <VInput
       :classes="{
         input:
@@ -24,4 +24,4 @@ import { VInput } from 'vuetensils'
 export default class SearchBar extends Vue {}
 </script>
 
-<style lang="scss"></style>
+<style></style>

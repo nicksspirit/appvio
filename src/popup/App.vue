@@ -1,7 +1,7 @@
 <template>
   <main id="popup-main">
     <div class="flex flex-row justify-center py-4">
-      <SearchBar />
+      <SearchBar class="w-3/4" />
     </div>
   </main>
 </template>
