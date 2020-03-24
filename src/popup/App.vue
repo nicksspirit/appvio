@@ -3,16 +3,26 @@
     <div class="flex flex-row justify-center py-4">
       <SearchBar class="w-3/4" />
     </div>
+    <div class="w-full flex flex-row justify-center">
+      <hr class="w-3/4" />
+    </div>
+    <AppList v-slot="{ appData }">
+      <AppCard v-for="data in appData" :key="data.url" :appData="data" />
+    </AppList>
   </main>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import SearchBar from '@/components/SearchBar.vue'
+import AppCard from '@/components/AppCard.vue'
+import AppList from './AppList.vue'
 
 @Component({
   components: {
-    SearchBar
+    SearchBar,
+    AppList,
+    AppCard
   }
 })
 export default class App extends Vue {
