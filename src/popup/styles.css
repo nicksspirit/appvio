@@ -1,5 +1,5 @@
 html {
-  width: 400px;
-  height: 400px;
+  width: var(--app-width);
+  height: var(--app-height);
   font-size: 1rem;
 }

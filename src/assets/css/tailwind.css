@@ -4,6 +4,8 @@
   --color-acc1: #e5f2ff;
   --color-acc2: #c8d5d7;
   --color-acc3: #e5f2ff;
+  --app-height: 400px;
+  --app-width: 400px;
 }
 
 @tailwind base;
