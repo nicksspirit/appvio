@@ -1,40 +1,43 @@
 <template>
   <div
-    class="appcard max-w-sm rounded overflow-hidden shadow-md px-2 py-3 my-1"
+    class="appcard max-w-sm rounded overflow-hidden \
+    shadow-md px-2 py-3 my-1 flex align-center"
   >
-    <div class="appcard__icon">
-      <img v-show="faviconUrl" :src="faviconUrl" />
-      <svg
-        v-show="!faviconUrl"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        style="margin:auto;background:#fff;display:block;"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="xMidYMid"
-      >
-        <circle
-          cx="50"
-          cy="50"
-          fill="none"
-          stroke="#292e66"
-          stroke-width="10"
-          r="35"
-          stroke-dasharray="164.93361431346415 56.97787143782138"
+    <div class="appcard__icon flex justify-center items-center mr-3 shadow-sm">
+      <div class="flex justify-center items-center">
+        <img v-show="faviconUrl" :src="faviconUrl" />
+        <svg
+          v-show="!faviconUrl"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          style="margin:auto;background:#fff;display:block;"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="xMidYMid"
         >
-          <animateTransform
-            attributeName="transform"
-            type="rotate"
-            repeatCount="indefinite"
-            dur="1s"
-            values="0 50 50;360 50 50"
-            keyTimes="0;1"
-          ></animateTransform>
-        </circle>
-      </svg>
+          <circle
+            cx="50"
+            cy="50"
+            fill="none"
+            stroke="#292e66"
+            stroke-width="10"
+            r="35"
+            stroke-dasharray="164.93361431346415 56.97787143782138"
+          >
+            <animateTransform
+              attributeName="transform"
+              type="rotate"
+              repeatCount="indefinite"
+              dur="1s"
+              values="0 50 50;360 50 50"
+              keyTimes="0;1"
+            ></animateTransform>
+          </circle>
+        </svg>
+      </div>
     </div>
     <div class="appcard__details">
-      <dt>{{ appData.name }}</dt>
-      <dd>
+      <dt class="">{{ appData.name }}</dt>
+      <dd class="">
         <a href="">{{ appData.url }}</a>
       </dd>
     </div>
@@ -100,7 +103,14 @@ export default class AppCard extends Vue {
 
 <style lang="scss" scoped>
 .appcard {
+  width: inherit;
+  height: inherit;
+
   &__icon {
+    width: 36px;
+  }
+
+  &__icon div {
     width: 24px;
     height: 24px;
   }
