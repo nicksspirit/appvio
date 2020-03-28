@@ -74,6 +74,7 @@ export default class AppCard extends Vue {
   async getFaviconUrl(appUrl: string) {
     const domain = new URL(appUrl).host
     const fallbackUrl = `https://www.google.com/s2/favicons?domain=${domain}`
+
     try {
       const response = await axios.get<FavIcon>(
         `http://favicongrabber.com/api/grab/${domain}`
