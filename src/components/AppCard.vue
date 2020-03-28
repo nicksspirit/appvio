@@ -1,6 +1,6 @@
 <template>
   <div
-    class="appcard max-w-sm rounded overflow-hidden \
+    class="appcard max-w-sm rounded overflow-hidden 
     shadow-md px-2 py-3 my-1 flex flex-col align-center"
   >
     <div class="appcard__controls flex justify-end">
@@ -22,9 +22,7 @@
       </div>
     </div>
     <div class="flex flex-row">
-      <div
-        class="appcard__icon flex justify-center items-center mr-3 shadow-sm"
-      >
+      <div class="appcard__icon flex justify-center items-center mr-3">
         <div class="flex justify-center items-center">
           <img v-show="faviconUrl" :src="faviconUrl" />
           <svg
@@ -66,7 +64,7 @@
       </div>
     </div>
     <div class="appcard__controls flex justify-end">
-      <div class="appcard__controls__btn copy-btn mx-1">
+      <div class="appcard__controls__btn copy-btn mx-2">
         <button>
           <svg
             fill="none"
@@ -82,7 +80,7 @@
           </svg>
         </button>
       </div>
-      <div class="appcard__controls__btn expand-btn mx-1">
+      <div class="appcard__controls__btn expand-btn mx-2">
         <button>
           <svg
             fill="none"
@@ -171,12 +169,12 @@ export default class AppCard extends Vue {
     width: 24px;
     height: 24px;
   }
-}
 
-.appcard__controls {
-  &__btn button {
-    width: 15px;
-    height: 15px;
+  &__controls {
+    &__btn button {
+      width: 16px;
+      height: 16px;
+    }
   }
 }
 </style>
