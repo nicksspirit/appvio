@@ -1,5 +1,5 @@
 <template>
-  <div class="applist px-3">
+  <div class="applist px-3 pb-2">
     <dl>
       <slot :appData="appData"></slot>
     </dl>

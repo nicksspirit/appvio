@@ -52,14 +52,11 @@
           </svg>
         </div>
       </div>
-      <div class="appcard__name">
-        <dt class="">
+      <dt class="appcard__name">
+        <a :href="appData.url">
           <h4 class="text-lg truncate ...">{{ appData.name }}</h4>
-        </dt>
-        <!-- <dd class="">
-        <a href="">{{ appData.url }}</a>
-      </dd> -->
-      </div>
+        </a>
+      </dt>
     </div>
     <div class="appcard__controls flex justify-end">
       <button class="appcard__controls__btn copy-btn mx-2">
