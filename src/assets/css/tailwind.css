@@ -1,9 +1,7 @@
 :root {
   --color-primary: #292e66;
-  --color-bg: #e5f2ff;
-  --color-acc1: #e5f2ff;
+  --color-bg: #ffffff;
   --color-acc2: #c8d5d7;
-  --color-acc3: #e5f2ff;
   --app-height: 400px;
   --app-width: 400px;
 }
