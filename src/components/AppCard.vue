@@ -1,11 +1,12 @@
 <template>
   <div class="appcard relative">
     <div
-      class="max-w-sm rounded overflow-hidden shadow-md px-2 py-3 my-1 flex flex-col align-center relative z-20"
+      class="bg-secondary max-w-sm rounded overflow-hidden shadow-md px-2 py-3 my-1 flex flex-col align-center relative z-20"
     >
       <div class="appcard__controls flex justify-end">
         <button
-          class="appcard__controls__btn menu-btn focus:outline-none rounded-full focus:shadow-outline"
+          class="appcard__controls__btn menu-btn focus:outline-none rounded-full focus:shadow-primaryoutline"
+          @click="isMenuExpanded = !isMenuExpanded"
         >
           <svg
             fill="none"
@@ -62,7 +63,7 @@
       </div>
       <div class="appcard__controls flex justify-end">
         <button
-          class="appcard__controls__btn copy-btn focus:outline-none rounded-full focus:shadow-outline mx-2"
+          class="appcard__controls__btn copy-btn focus:outline-none rounded-full focus:shadow-primaryoutline mx-2"
         >
           <svg
             fill="none"
@@ -80,10 +81,10 @@
         <button
           :class="{
             'appcard__controls__btn expand-btn mx-2 \
-            focus:outline-none rounded-full focus:shadow-outline': true,
-            'appcard__controls__btn--is-expanded': isExpanded
+            focus:outline-none rounded-full focus:shadow-primaryoutline': true,
+            'appcard__controls__btn--is-expanded': isDetailsExpanded
           }"
-          @click="isExpanded = !isExpanded"
+          @click="isDetailsExpanded = !isDetailsExpanded"
         >
           <svg
             fill="none"
@@ -100,7 +101,7 @@
     </div>
     <transition name="slide-in-top">
       <div
-        v-show="isExpanded"
+        v-show="isDetailsExpanded"
         class="
         appcard__details max-w-sm m-auto h-auto
         rounded overflow-hidden shadow-md 
@@ -132,12 +133,18 @@
         </div>
       </div>
     </transition>
+    <AppCardMenu
+      v-show="isMenuExpanded"
+      @onCloseAppMenu="closeAppMenu"
+      :isExpanded="isDetailsExpanded"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { AppData } from '@/common/interfaces'
+import AppCardMenu from '@/components/AppCardMenu.vue'
 import axios from 'axios'
 
 interface Icon {
@@ -151,10 +158,15 @@ interface FavIcon {
   icons: Icon[]
 }
 
-@Component
+@Component({
+  components: {
+    AppCardMenu
+  }
+})
 export default class AppCard extends Vue {
   public faviconUrl = ''
-  public isExpanded = false
+  public isDetailsExpanded = false
+  public isMenuExpanded = false
   private readonly targetIconSize = '32'
   @Prop() private appData!: AppData
 
@@ -190,6 +202,10 @@ export default class AppCard extends Vue {
       this.faviconUrl = fallbackUrl
     }
   }
+
+  closeAppMenu() {
+    this.isMenuExpanded = false
+  }
 }
 </script>
 
@@ -203,10 +219,6 @@ export default class AppCard extends Vue {
 .appcard {
   width: inherit;
   height: inherit;
-
-  > div {
-    background-color: var(--color-bg);
-  }
 
   &__name {
     max-width: 220px;
