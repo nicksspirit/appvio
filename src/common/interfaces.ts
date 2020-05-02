@@ -4,3 +4,8 @@ export interface AppData {
   tags: string[]
   url: string
 }
+
+export interface LocalDB {
+  local: PouchDB.Database<{}>,
+  syncHandler: PouchDB.Replication.Sync<{}>
+}
