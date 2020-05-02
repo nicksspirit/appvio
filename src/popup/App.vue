@@ -6,8 +6,15 @@
     <div class="w-full flex flex-row justify-center">
       <hr class="w-3/4" />
     </div>
-    <AppList v-slot="{ appData }">
-      <AppCard v-for="data in appData" :key="data.url" :appData="data" />
+    <AppList v-slot="{ docs }">
+      <AppCard
+        v-for="doc in docs"
+        :key="doc.key"
+        :appDoc="doc.doc"
+        :docId="doc.id"
+        :docKey="doc.key"
+        :docRev="doc.value.rev"
+      />
     </AppList>
   </main>
 </template>

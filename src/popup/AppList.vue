@@ -1,30 +1,35 @@
 <template>
   <div class="applist px-3 pb-2">
     <dl>
-      <slot :appData="appData"></slot>
+      <slot :docs="docs"></slot>
     </dl>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { AppData } from '@/common/interfaces'
-import axios from 'axios'
+import { AppDocument, DocumentResponse } from '@/common/interfaces'
 
 @Component
 export default class App extends Vue {
-  appData: Array<AppData> = []
+  docs: Array<DocumentResponse> = []
 
   created() {
     this.getApps()
   }
 
   async getApps() {
-    const response = await axios.get<Array<AppData>>(
-      'http://localhost:3004/apps'
-    )
+    try {
+      const result = await this.$db.local.allDocs<AppDocument>({
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        include_docs: true,
+        attachments: true
+      })
 
-    this.appData = response.data
+      this.docs = result.rows.filter(res => res.doc?.$type == 'app')
+    } catch (err) {
+      console.log(err)
+    }
   }
 }
 </script>

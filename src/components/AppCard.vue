@@ -56,8 +56,8 @@
           </div>
         </div>
         <dt class="appcard__name">
-          <a :href="appData.url">
-            <h4 class="text-lg truncate ...">{{ appData.name }}</h4>
+          <a :href="appDoc.url">
+            <h4 class="text-lg truncate ...">{{ appDoc.name }}</h4>
           </a>
         </dt>
       </div>
@@ -111,21 +111,21 @@
         <p
           class="appcard__details__descr px-2 mb-1 h-24 overflow-hidden text-justify"
         >
-          {{ appData.description }}
+          {{ appDoc.description }}
         </p>
         <div
           class="appcard__details__tags px-2 py-1 overflow-hidden overflow-x-scroll whitespace-no-wrap"
         >
-          <span class="text-grey" v-if="appData.tags.length === 0">
+          <span class="text-grey" v-if="appDoc.tags.length === 0">
             No tags available
           </span>
           <span
             :class="{
               'bg-grey rounded-full text-white text-xxs p-1 mr-1':
-                appData.tags.length
+                appDoc.tags.length
             }"
             :key="index"
-            v-for="(tag, index) in appData.tags"
+            v-for="(tag, index) in appDoc.tags"
             v-else
           >
             #{{ tag }}
@@ -150,7 +150,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import { AppData } from '@/common/interfaces'
+import { AppDocument } from '@/common/interfaces'
 import AppCardMenu from '@/components/AppCardMenu.vue'
 import axios from 'axios'
 
@@ -168,17 +168,22 @@ interface FavIcon {
 @Component({
   components: {
     AppCardMenu
-  }
+  },
+  // Don't add props as html attribute
+  inheritAttrs: false
 })
 export default class AppCard extends Vue {
   public faviconUrl = ''
   public isDetailsExpanded = false
   public isMenuExpanded = false
   private readonly targetIconSize = '32'
-  @Prop() private appData!: AppData
+  @Prop() private appDoc!: AppDocument
+  @Prop() private docId!: PouchDB.Core.DocumentId
+  @Prop() private docKey!: PouchDB.Core.DocumentKey
+  @Prop() private docRev!: PouchDB.Core.RevisionId
 
   created() {
-    this.getFaviconUrl(this.$props.appData.url)
+    this.getFaviconUrl(this.$props.appDoc.url)
   }
 
   async getFaviconUrl(appUrl: string) {
