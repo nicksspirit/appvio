@@ -1,5 +1,13 @@
 import Vue, { VNode } from 'vue'
 
+import { LocalDB } from '@/common/interfaces'
+
+declare module 'vue/types/vue' {
+  interface Vue {
+    $db: LocalDB
+  }
+}
+
 declare global {
   namespace JSX {
     // tslint:disable no-empty-interface
