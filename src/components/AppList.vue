@@ -1,5 +1,5 @@
 <template>
-  <div class="applist px-3 pb-2 h-full">
+  <div class="px-3 pb-2 h-full overflow-hidden overflow-y-scroll">
     <dl>
       <slot :docs="docs"></slot>
     </dl>
@@ -33,11 +33,3 @@ export default class App extends Vue {
   }
 }
 </script>
-
-<style lang="scss">
-.applist {
-  max-height: var(--app-height);
-  overflow: hidden;
-  overflow-y: scroll;
-}
-</style>

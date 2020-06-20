@@ -6,7 +6,7 @@
     <div class="w-full flex flex-row justify-center">
       <hr class="w-3/4" />
     </div>
-    <AppList v-slot="{ docs }">
+    <AppList v-slot="{ docs }" class="applist">
       <AppCard
         v-for="doc in docs"
         :key="doc.key"
@@ -53,4 +53,8 @@ import AppList from '@/components/AppList.vue'
 export default class AppMain extends Vue {}
 </script>
 
-<style></style>
+<style lang="scss">
+.applist {
+  max-height: var(--app-height);
+}
+</style>
