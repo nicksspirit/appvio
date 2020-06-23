@@ -18,6 +18,7 @@
     </AppList>
     <div class="w-full flex flex-row justify-end p-2 absolute bottom-0">
       <button
+        @click="addApp"
         class="p-0 mx-3 w-10 h-10 bg-red-600 rounded-full hover:bg-red-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
       >
         <svg
@@ -50,7 +51,11 @@ import AppList from '@/components/AppList.vue'
     AppCard
   }
 })
-export default class AppMain extends Vue {}
+export default class AppMain extends Vue {
+  addApp() {
+    this.$emit('onComponentChange', 'AppEditForm', 'ADD')
+  }
+}
 </script>
 
 <style lang="scss">

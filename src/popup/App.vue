@@ -1,6 +1,9 @@
 <template>
   <main id="popup-main" class="relative">
-    <component v-bind:is="currentComponent" class="tab"></component>
+    <component
+      @onComponentChange="handleComponentChange"
+      v-bind:is="currentComponent"
+    ></component>
   </main>
 </template>
 
@@ -26,6 +29,10 @@ export default class App extends Vue {
 
   mounted() {
     browser.runtime.sendMessage({})
+  }
+
+  handleComponentChange(componentName: string, formMode: FormMode) {
+    this.component = componentName
   }
 }
 </script>
