@@ -10,14 +10,21 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import AppMain from '@/components/AppMain.vue'
+import AppEditForm from '@/components/AppEditForm.vue'
+
+const enum FormMode {
+  Add = 'ADD',
+  Edit = 'EDIT'
+}
 
 @Component({
   components: {
-    AppMain
+    AppMain,
+    AppEditForm
   }
 })
 export default class App extends Vue {
-  private component = 'AppMain'
+  private component = 'AppEditForm'
 
   get extName() {
     return browser.i18n.getMessage('extName')
