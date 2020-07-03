@@ -18,6 +18,9 @@ module.exports = {
       }
     }
   },
-  variants: {},
+  variants: {
+    outline: ['focus', 'focus-within'],
+    borderColor: ['focus', 'focus-within']
+  },
   plugins: []
 }

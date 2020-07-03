@@ -16,6 +16,11 @@
   clip: rect(1px, 1px, 1px, 1px);
   white-space: nowrap;
 }
+
 @tailwind base;
 @tailwind components;
+
+.app-input {
+  @apply w-full px-3 py-2 border appearance-none border-solid rounded-md;
+}
 @tailwind utilities;
