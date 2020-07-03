@@ -6,16 +6,7 @@
         class="appform__controls__btn close-btn rounded-full 
         focus:outline-none focus:shadow-primaryoutline"
       >
-        <svg
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-        >
-          <path d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
+        <CloseIcon />
       </button>
     </div>
     <VForm class="appform h-full" autocomplete="off" @submit.prevent="onSave">
@@ -86,12 +77,14 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import { VForm, VInput } from 'vuetensils'
 import { FormMode } from '@/common/enums'
 import TagInput from '@/components/TagInput.vue'
+import CloseIcon from './icons/CloseIcon.svg'
 
 @Component({
   components: {
     VForm,
     VInput,
-    TagInput
+    TagInput,
+    CloseIcon
   }
 })
 export default class AppEditForm extends Vue {

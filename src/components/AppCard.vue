@@ -8,51 +8,14 @@
           class="appcard__controls__btn menu-btn focus:outline-none rounded-full focus:shadow-primaryoutline"
           @click="isMenuExpanded = !isMenuExpanded"
         >
-          <svg
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
-            />
-          </svg>
+          <MenuIcon />
         </button>
       </div>
       <div class="flex flex-row">
         <div class="appcard__icon flex justify-center items-center mr-3">
           <div class="flex justify-center items-center">
             <img v-show="faviconUrl" :src="faviconUrl" />
-            <svg
-              v-show="!faviconUrl"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              style="margin:auto;background:#fff;display:block;"
-              viewBox="0 0 100 100"
-              preserveAspectRatio="xMidYMid"
-            >
-              <circle
-                cx="50"
-                cy="50"
-                fill="none"
-                stroke="#292e66"
-                stroke-width="10"
-                r="35"
-                stroke-dasharray="164.93361431346415 56.97787143782138"
-              >
-                <animateTransform
-                  attributeName="transform"
-                  type="rotate"
-                  repeatCount="indefinite"
-                  dur="1s"
-                  values="0 50 50;360 50 50"
-                  keyTimes="0;1"
-                />
-              </circle>
-            </svg>
+            <LoadingCircleIcon v-show="!faviconUrl" />
           </div>
         </div>
         <dt class="appcard__name">
@@ -65,18 +28,7 @@
         <button
           class="appcard__controls__btn copy-btn focus:outline-none rounded-full focus:shadow-primaryoutline mx-2"
         >
-          <svg
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
-            />
-          </svg>
+          <CopyIcon />
         </button>
         <button
           :class="{
@@ -86,16 +38,7 @@
           }"
           @click="isDetailsExpanded = !isDetailsExpanded"
         >
-          <svg
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path d="M19 9l-7 7-7-7" />
-          </svg>
+          <ExpandIcon />
         </button>
       </div>
     </div>
@@ -120,13 +63,13 @@
             No tags available
           </span>
           <span
+            v-else
             :class="{
               'bg-grey rounded-full text-white text-xxs p-1 mr-1':
                 appDoc.tags.length
             }"
             :key="index"
             v-for="(tag, index) in appDoc.tags"
-            v-else
           >
             #{{ tag }}
           </span>
@@ -152,6 +95,10 @@
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { AppDocument } from '@/common/interfaces'
 import AppCardMenu from '@/components/AppCardMenu.vue'
+import MenuIcon from './icons/MenuIcon.svg'
+import CopyIcon from './icons/CopyIcon.svg'
+import ExpandIcon from './icons/ExpandIcon.svg'
+import LoadingCircleIcon from './icons/LoadingCircleIcon.svg'
 import axios from 'axios'
 
 interface Icon {
@@ -167,7 +114,11 @@ interface FavIcon {
 
 @Component({
   components: {
-    AppCardMenu
+    AppCardMenu,
+    MenuIcon,
+    CopyIcon,
+    ExpandIcon,
+    LoadingCircleIcon
   },
   // Don't add props as html attribute
   inheritAttrs: false
