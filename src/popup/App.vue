@@ -3,6 +3,7 @@
     <component
       @onComponentChange="handleComponentChange"
       v-bind:is="currentComponent"
+      v-bind="currentComponentProps"
     ></component>
   </main>
 </template>
@@ -20,6 +21,7 @@ import AppEditForm from '@/components/AppEditForm.vue'
 })
 export default class App extends Vue {
   private component = 'AppEditForm'
+  private componentProps = {}
 
   get extName() {
     return browser.i18n.getMessage('extName')
@@ -29,12 +31,17 @@ export default class App extends Vue {
     return this.component
   }
 
+  get currentComponentProps() {
+    return this.componentProps
+  }
+
   mounted() {
     browser.runtime.sendMessage({})
   }
 
-  handleComponentChange(componentName: string, formMode: FormMode) {
+  handleComponentChange(componentName: string, options: object) {
     this.component = componentName
+    Object.assign(this.componentProps, { ...options })
   }
 }
 </script>

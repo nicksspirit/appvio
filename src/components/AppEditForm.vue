@@ -2,6 +2,7 @@
   <div class="p-3">
     <div class="appform__controls flex justify-end p-1">
       <button
+        @click="closeForm"
         class="appform__controls__btn close-btn rounded-full 
         focus:outline-none focus:shadow-primaryoutline"
       >
@@ -81,7 +82,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Prop } from 'vue-property-decorator'
 import { VForm, VInput } from 'vuetensils'
 import { FormMode } from '@/common/enums'
 import TagInput from '@/components/TagInput.vue'
@@ -94,6 +95,12 @@ import TagInput from '@/components/TagInput.vue'
   }
 })
 export default class AppEditForm extends Vue {
+  @Prop({ default: FormMode.Add }) public mode!: FormMode
+
+  closeForm() {
+    this.$emit('onComponentChange', 'AppMain')
+  }
+
   async onSave(event: Event) {
     const target = event.target as HTMLFormElement
     const form = new FormData(target)
