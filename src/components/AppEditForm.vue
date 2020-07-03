@@ -17,8 +17,8 @@
         </svg>
       </button>
     </div>
-    <VForm class="appform h-full" autocomplete="off">
-      <template>
+    <VForm class="appform h-full" autocomplete="off" @submit.prevent="onSave">
+      <template #default="form">
         <VInput
           class="appform__input"
           type="text"
@@ -61,22 +61,60 @@
           }"
           required
         ></VInput>
+        <div class="appform__input">
+          <span class="text-base">Tags</span>
+          <TagInput></TagInput>
+        </div>
+        <div class="flex flex-row justify-end">
+          <!-- <button @click="form.clear" type="button">Clear</button> -->
+          <button
+            type="submit"
+            :disabled="!form.valid"
+            class="my-3 bg-transparent hover:bg-primary font-semibold hover:text-white py-2 px-4 border border-primary hover:border-transparent rounded"
+          >
+            Save
+          </button>
+        </div>
       </template>
     </VForm>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { VForm, VInput } from 'vuetensils'
+import { AppDocument } from '@/common/interfaces'
+import TagInput from '@/components/TagInput.vue'
+
 
 @Component({
   components: {
     VForm,
-    VInput
+    VInput,
+    TagInput
   }
 })
-export default class AppEditForm extends Vue {}
+export default class AppEditForm extends Vue {
+  async onSave(event: Event) {
+    const target = event.target as HTMLFormElement
+    const form = new FormData(target)
+
+    form.delete('tag') // Don't need value from input in input tag
+
+    const formObj = Object.fromEntries(form)
+
+    const appData = Object.assign(formObj, {
+      tags: form.getAll('tags'),
+      $type: 'app'
+    })
+
+    try {
+      const resp = await this.$db.local.post(appData)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
 </script>
 
 <style lang="scss">
