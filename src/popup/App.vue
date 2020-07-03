@@ -20,7 +20,7 @@ import AppEditForm from '@/components/AppEditForm.vue'
   }
 })
 export default class App extends Vue {
-  private component = 'AppEditForm'
+  private component = 'AppMain'
   private componentProps = {}
 
   get extName() {
