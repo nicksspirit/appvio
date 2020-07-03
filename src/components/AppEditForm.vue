@@ -23,7 +23,7 @@
           class="appform__input"
           type="text"
           label="Name"
-          name="appName"
+          name="name"
           :classes="{
             input:
               'w-full px-3 py-2 appearance-none leading-tight \
@@ -37,7 +37,7 @@
           class="appform__input"
           type="text"
           label="URL"
-          name="appUrl"
+          name="url"
           :classes="{
             input:
               'w-full px-3 py-2 appearance-none leading-tight \
@@ -51,7 +51,7 @@
           class="appform__input"
           type="textarea"
           label="Description"
-          name="appDesc"
+          name="description"
           :classes="{
             input:
               'w-full px-3 py-2 h-20 appearance-none leading-tight \
@@ -83,9 +83,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { VForm, VInput } from 'vuetensils'
-import { AppDocument } from '@/common/interfaces'
 import TagInput from '@/components/TagInput.vue'
-
 
 @Component({
   components: {
