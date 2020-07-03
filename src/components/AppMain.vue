@@ -43,6 +43,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import SearchBar from '@/components/SearchBar.vue'
 import AppCard from '@/components/AppCard.vue'
 import AppList from '@/components/AppList.vue'
+import { FormMode } from '@/common/enums'
 
 @Component({
   components: {
@@ -53,7 +54,7 @@ import AppList from '@/components/AppList.vue'
 })
 export default class AppMain extends Vue {
   addApp() {
-    this.$emit('onComponentChange', 'AppEditForm', 'ADD')
+    this.$emit('onComponentChange', 'AppEditForm', { mode: FormMode.Add })
   }
 }
 </script>

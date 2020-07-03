@@ -83,6 +83,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { VForm, VInput } from 'vuetensils'
+import { FormMode } from '@/common/enums'
 import TagInput from '@/components/TagInput.vue'
 
 @Component({

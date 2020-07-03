@@ -12,11 +12,6 @@ import { Component, Vue } from 'vue-property-decorator'
 import AppMain from '@/components/AppMain.vue'
 import AppEditForm from '@/components/AppEditForm.vue'
 
-const enum FormMode {
-  Add = 'ADD',
-  Edit = 'EDIT'
-}
-
 @Component({
   components: {
     AppMain,
