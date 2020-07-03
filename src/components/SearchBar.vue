@@ -1,13 +1,15 @@
 <template>
   <div class="searchbar">
     <VInput
+      label="Search for apps by name or tag"
       :classes="{
         input:
           'w-full px-3 py-2 appearance-none leading-tight \
           border border-solid rounded-md \
-          focus:outline-none focus:border-primary'
+          focus:outline-none focus:border-primary',
+        text: 'visually-hidden'
       }"
-      placeholder="Search..."
+      placeholder="Search"
     />
   </div>
 </template>

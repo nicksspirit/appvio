@@ -20,6 +20,7 @@
     </div>
     <VInput
       type="text"
+      label="Enter a tag"
       name="tag"
       placeholder="Enter a tag"
       class="inline-block my-2"
