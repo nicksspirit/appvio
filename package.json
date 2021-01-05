@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@types/pouchdb": "^6.4.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "core-js": "^3.6.4",
     "pouchdb": "^7.2.1",
     "pouchdb-find": "^7.2.1",
